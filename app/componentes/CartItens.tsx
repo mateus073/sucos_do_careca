@@ -1,0 +1,132 @@
+// compoente do carrinho que contem os itens que forao adicionados 
+
+import { useContext } from "react";
+import { CartContext } from "../contexts/CartContext";
+
+export const CartItens = () => {
+
+    // ctx que contem os itens do carrinho
+    const ItensCtxCart = useContext(CartContext)
+
+    return (
+        <section className="bg-white text-black rounded-2xl shadow-xl p-6 w-full max-w-5xl mx-auto">
+
+            {/* TÍTULO PRINCIPAL - SEM ESTAR DENTRO DO FLEX */}
+            <h1 className="text-3xl font-bold text-[#285087] mb-20 text-center">
+                SEU CARRINHO
+            </h1>
+
+            {/* CONTAINER DO CONTEÚDO */}
+            <div className="flex flex-col md:flex-row gap-8">
+
+                <div className="flex-1 min-w-[350px] rounded-xl p-5 shadow-md border border-gray-200">
+
+
+
+                    {/* TÍTULO */}
+                    <h2 className="text-2xl font-bold text-[#285087] mb-4 border-b pb-2">
+                        PRODUTOS ADICIONADOS
+                    </h2>
+
+                    {/* LISTA OU TEXTO DE CARRINHO VAZIO */}
+                    {ItensCtxCart?.cartItems.length === 0 ? (
+                        <p className="text-gray-500 italic text-center py-8">
+                            O carrinho está vazio.
+                        </p>
+                    ) : (
+                        <ul className="flex flex-col gap-4">
+                            {ItensCtxCart?.cartItems.map((item, index) => (
+                                <li
+                                    key={index}
+                                    className="flex items-center gap-4 
+                                p-4 rounded-xl shadow-md
+                                border border-gray-200
+                                hover:bg-gray-50 transition"
+                                >
+                                    {/* IMAGEM */}
+                                    <img
+                                        src={`/imgs/img-${item.picture}-${item.tamanho}.webp`}
+                                        alt={item.sabor}
+                                        className="w-20 h-20 rounded-lg object-cover shadow-sm"
+                                    />
+
+
+                                    {/* INFORMAÇÕES DO ITEM */}
+                                    <div className="flex flex-col flex-1">
+                                        <span className="text-lg font-semibold text-[#285087] capitalize">
+                                            {item.sabor}
+                                        </span>
+
+                                        <span className="text-[#D4DEEE] text-sm text-gray-600">
+                                            tamanho:{item.tamanho}
+                                        </span>
+
+                                        {item.comLeite && (
+                                            <span className="text-[#D4DEEE] text-sm text-gray-600">
+                                                com leite
+                                            </span>
+                                        )}
+
+                                        <span className="text-[#80BF21] font-bold text-sm mt-1">
+                                            valor:   R$ {item.valorFinal.toFixed(2)}
+                                        </span>
+
+                                    </div>
+
+
+                                    {/* AÇÕES */}
+                                    <div className="flex flex-col gap-2">
+                                        <button
+                                            className="
+                                        bg-red-500 text-white 
+                                        px-3 py-1 rounded-lg text-sm font-medium
+                                        hover:bg-red-600 transition
+                                    ">
+                                            REMOVER
+                                        </button>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    )}</div>
+
+                {/* DIV DA ESQUERDA NO PC: RESUMO FINAL */}
+                <div className="flex-1 min-w-[260px]  pt-4 md:pt-0 md:pl-6 flex flex-col gap-4">
+
+                    <h2 className="text-2xl font-bold text-[#285087] mb-4 border-b pb-2">
+                        RESUMO DA COMPRA
+                    </h2>
+                    <p className="text-lg font-semibold text-[#285087]">
+                        Valor total:
+                        <span className="text-[#80BF21] ml-2">
+                            {'aqui eu acesso a funcao que soma os valores do context'}
+                        </span>
+                    </p>
+                    
+                    <button
+                        className="
+                        bg-[#FFFFFF] text-[#285087] border border-[#285087]
+                        py-3 rounded-xl font-semibold text-lg
+                        hover:bg-[#285087] hover:text-[#FFFFFF] transition
+                        shadow-md
+                    "
+                    >
+                        Continuar comprando
+                    </button>
+                    <button
+                        className="
+                        bg-[#285087] text-[#FFFFFF] border border-[#285087]
+                        py-3 rounded-xl font-semibold text-lg
+                        hover:bg-[#FFFFFF] hover:text-[#285087] transition
+                        shadow-md
+                    "
+                    >
+                        Finalizar compra
+                    </button>
+
+                </div>
+            </div>
+        </section>
+    );
+}
+

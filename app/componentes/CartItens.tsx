@@ -1,12 +1,23 @@
 // compoente do carrinho que contem os itens que forao adicionados 
+'use client'
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../contexts/CartContext";
 
 export const CartItens = () => {
 
     // ctx que contem os itens do carrinho
     const ItensCtxCart = useContext(CartContext)
+
+    // state pra armazenar o valor da soma dos itens do carrinho
+    const [tot, setTot] = useState<number>(0)
+
+    // calcula total automaticamente:
+    const total = ItensCtxCart?.cartItems.reduce(
+        (sum, item) => sum + (item.valorFinal ?? 0)
+        , 0
+    ) ?? 0;
+
 
     return (
         <section className="bg-white text-black rounded-2xl shadow-xl p-6 w-full max-w-5xl mx-auto">
@@ -37,7 +48,7 @@ export const CartItens = () => {
                         <ul className="flex flex-col gap-4">
                             {ItensCtxCart?.cartItems.map((item, index) => (
                                 <li
-                                    key={index}
+                                    key={item.id}
                                     className="flex items-center gap-4 
                                 p-4 rounded-xl shadow-md
                                 border border-gray-200
@@ -68,7 +79,7 @@ export const CartItens = () => {
                                         )}
 
                                         <span className="text-[#80BF21] font-bold text-sm mt-1">
-                                            valor:   R$ {item.valorFinal.toFixed(2)}
+                                            valor:   R$ {item.valorFinal?.toFixed(2)}
                                         </span>
 
                                     </div>
@@ -77,18 +88,25 @@ export const CartItens = () => {
                                     {/* AÇÕES */}
                                     <div className="flex flex-col gap-2">
                                         <button
-                                            className="
-                                        bg-red-500 text-white 
-                                        px-3 py-1 rounded-lg text-sm font-medium
-                                        hover:bg-red-600 transition
-                                    ">
+                                            className="bg-red-500 text-white px-3 py-1 rounded-lg text-sm font-medium hover:bg-red-600 transition"
+                                            onClick={() =>
+                                                ItensCtxCart?.dispatch({
+                                                    type: 'remove',
+                                                    payload: {
+                                                        id: item.id
+                                                    }
+                                                })
+                                            }
+                                        >
                                             REMOVER
                                         </button>
                                     </div>
                                 </li>
                             ))}
                         </ul>
-                    )}</div>
+                    )}
+                    {/* add botao de limpar carrinho */}
+                </div>
 
                 {/* DIV DA ESQUERDA NO PC: RESUMO FINAL */}
                 <div className="flex-1 min-w-[260px]  pt-4 md:pt-0 md:pl-6 flex flex-col gap-4">
@@ -97,12 +115,12 @@ export const CartItens = () => {
                         RESUMO DA COMPRA
                     </h2>
                     <p className="text-lg font-semibold text-[#285087]">
-                        Valor total:
+                        TOTAL:
                         <span className="text-[#80BF21] ml-2">
-                            {'aqui eu acesso a funcao que soma os valores do context'}
+                            R$ {total}
                         </span>
                     </p>
-                    
+
                     <button
                         className="
                         bg-[#FFFFFF] text-[#285087] border border-[#285087]

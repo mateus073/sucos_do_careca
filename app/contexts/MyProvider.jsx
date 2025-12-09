@@ -1,0 +1,1 @@
+// aqui ficara o provider do contexto global da aplicação

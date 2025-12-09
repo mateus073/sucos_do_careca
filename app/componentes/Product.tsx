@@ -29,6 +29,22 @@ export const Product = ({ product }: Props) => {
     }
 
 
+    // funcao pra pegar o valor final
+    const getValorBase = () => {
+        let valorBase = 0;
+
+        switch (tamanho) {
+            case '300ML': valorBase = product.valores[0]; break;
+            case '500ML': valorBase = product.valores[1]; break;
+            case '1L': valorBase = product.valores[2]; break;
+            default: return 0;
+        }
+
+        return valorBase + (leite ? 2 : 0);
+    };
+
+
+
 
     // state pra alterar tamanho e leite
     const [tamanho, setTamanho] = useState('');
@@ -42,10 +58,16 @@ export const Product = ({ product }: Props) => {
         const productFinal = {
             ...product,
             tamanho: tamanho,
-            comLeite: leite
+            comLeite: leite,
+            valorFinal: getValorBase()
         }
 
-        ItensCtxCart?.addToCart?.(productFinal)
+        ItensCtxCart?.dispatch({
+            type: 'add',
+            payload: {
+                newItem: productFinal
+            }
+        })
 
         setTamanho('');
         setLeite(false);
@@ -136,7 +158,10 @@ export const Product = ({ product }: Props) => {
                             {["300ML", "500ML", "1L"].map((item) => (
                                 <span
                                     key={item}
-                                    onClick={() => setTamanho(tamanho === item ? "" : item)}
+                                    onClick={() => {
+                                        handleImgClick(`img-${product.picture}-${item}.webp`)
+                                        setTamanho(tamanho === item ? "" : item)
+                                    }}
                                     className={`px-4 py-2 rounded-xl font-medium text-sm cursor-pointer shadow-sm border transition 
                                             ${tamanho === item
                                             ? "bg-[#80BF21] border-[#80BF21] text-white"
@@ -165,7 +190,10 @@ export const Product = ({ product }: Props) => {
 
                     {/* PREÇO */}
                     <span className="text-2xl font-bold text-[#80BF21]">
-                        R$ {product.valores[0].toFixed(2)}
+                        {tamanho
+                            ? `R$ ${getValorBase().toFixed(2)}`
+                            : 'Selecione um tamanho'
+                        }
                     </span>
 
                     {/* BOTÃO ADICIONAR */}

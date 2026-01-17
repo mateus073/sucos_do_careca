@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🥤 Sucos do Careca
 
-## Getting Started
+> Site oficial para pedidos de sucos naturais, com foco em simplicidade, rapidez e integração via WhatsApp.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 📌 Visão Geral
+
+O **Sucos do Careca** é um projeto web desenvolvido para permitir que clientes realizem pedidos de sucos de forma rápida, sem necessidade de login, enviando o pedido diretamente via WhatsApp.
+
+Este projeto foi pensado inicialmente como um **MVP (Produto Mínimo Viável)**, com arquitetura simples, porém organizada, permitindo fácil evolução no futuro.
+
+---
+
+## 🎯 Objetivo do Projeto
+
+* Facilitar pedidos de sucos naturais
+* Reduzir fricção no processo de compra
+* Enviar pedidos diretamente pelo WhatsApp
+* Estrutura preparada para futuras integrações (API, backend, login, etc.)
+
+---
+
+## 🧩 Funcionalidades Atuais
+
+* Listagem de produtos (sucos)
+* Carrinho de compras
+* Formulário simples para dados do cliente
+* Validação de formulário no front-end
+* Geração automática da mensagem de pedido
+* Envio do pedido via WhatsApp
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+* React
+* Next.js
+* TypeScript
+* Context API
+* Tailwind CSS
+
+---
+
+## 🗂️ Estrutura do Projeto (resumo)
+
+```
+src/
+ ├─ components/     # Componentes reutilizáveis
+ ├─ contexts/       # Contextos globais (ex: carrinho)
+ ├─ pages/          # Páginas da aplicação
+ ├─ services/       # Regras de negócio e integrações futuras
+ ├─ types/          # Tipagens TypeScript
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📦 Fluxo de Pedido (atual)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Cliente escolhe os produtos
+2. Adiciona ao carrinho
+3. Preenche nome, telefone e endereço
+4. Sistema valida os dados
+5. Pedido é formatado
+6. WhatsApp é aberto com a mensagem pronta
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Possíveis Evoluções Futuras
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* Cálculo automático de taxa de entrega por distância
+* Integração com API de mapas
+* Backend para persistência de pedidos
+* Área administrativa
+* Sistema de login (opcional)
+* Histórico de pedidos
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## ⚠️ Observações Importantes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* Atualmente, todas as validações ocorrem no front-end
+* O projeto não utiliza backend nesta fase
+* Ideal para pequenos negócios ou MVPs
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 👨‍💻 Desenvolvedor
+
+Projeto desenvolvido por **Mateus**.
+
+> Este README será atualizado conforme o projeto evoluir.

@@ -10,7 +10,17 @@ O **Sucos do Careca** é um projeto web desenvolvido para permitir que clientes 
 
 Este projeto foi pensado inicialmente como um **MVP (Produto Mínimo Viável)**, com arquitetura simples, porém organizada, permitindo fácil evolução no futuro.
 
+## 📸 Screenshots
+
+<div align="center">
+    <img src="./public/imgs/print1.png" alt="Tela inicial" width="30%" />
+    <img src="./public/imgs/print2.png" alt="Carrinho de compras" width="30%" />
+    <img src="./public/imgs/print3.png" alt="Finalização do pedido" width="30%" />
+</div>
+
 ---
+
+
 
 ## 🎯 Objetivo do Projeto
 

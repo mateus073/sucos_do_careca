@@ -6,19 +6,21 @@ import { CartItens } from "./CartItens";
 import { QuemSomos } from "./QuemSomos";
 import { Contato } from "./Contato";
 import { Product } from "./Product";
+import FinishBuy1 from "./finishBuy1";
+
 
 
 // recebe no page a state que decide qual pagina sera exibida (suco lista, carrinho, quem somos, contato etc...)
 type Props = {
     currentMain: string;
+    onNavigate:(CurrentMain: string)=> void
     selectedProduct: any;
     onSelectProduct: (product: any) => void;
 }
 
 
 
-export const Main = ({currentMain, selectedProduct, onSelectProduct}: Props) => {
-
+export const Main = ({currentMain,onNavigate, selectedProduct, onSelectProduct}: Props) => {
 
 
 
@@ -34,8 +36,9 @@ export const Main = ({currentMain, selectedProduct, onSelectProduct}: Props) => 
                 <Product product={selectedProduct} />
             )}
 
-            {/* Outras telas */}
-            {currentMain === 'cartItens' && <CartItens />}
+            {/* Outras telas OBS: essa funcao q passo pro cartItens e pra alterar a satte de exibiçao de aba q e criado em page*/}
+            {currentMain === 'cartItens' && <CartItens onNavigate={onNavigate}/>} 
+            {currentMain === 'finisBuy1' && <FinishBuy1/>}
             {currentMain === "quemSomos" && <QuemSomos />}
             {currentMain === "contato" && <Contato />}
         </main>

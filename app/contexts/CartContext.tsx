@@ -24,26 +24,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     // dispatch = função que envia ações para o reducer
     const [cartItems, dispatch] = useReducer(CartReducer, [])
 
-/*
-    // funcao pra adicoinar ao carrinho
-    const addToCart = (newItem: Suco) => {
-        const itemFinal = {
-            ...newItem,
-            id: crypto.randomUUID() // cria sequencia de numeros aleatorios pra servir de id
-        };
-
-        setCartItems([...cartItems, itemFinal]);
-
-        console.log(cartItems)// console pra ver se foi adicionado corretamente
-    }
-
-  
-    // funcao de remoçao: 
-    const removeFromCart = (id: string) => {
-        setCartItems(cartItems.filter(item => item.id !== id));
-    }*/
-
-
     return (
         <CartContext.Provider value={{ cartItems, dispatch}}>
             {children}

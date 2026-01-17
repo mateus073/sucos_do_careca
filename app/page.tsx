@@ -29,6 +29,7 @@ export const Page = () => {
 
         <main className="flex-grow pt-20">
           <Main
+            onNavigate={setCurrentMain} // e passado pra main que passa pra cart list, isso e fluxo de dados(essa funcao pode ir descendo ate o comp desejado)
             currentMain={currentMain}
             selectedProduct={selectedProduct}
             onSelectProduct={handleSelectProduct} />

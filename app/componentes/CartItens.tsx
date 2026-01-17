@@ -1,23 +1,25 @@
-// compoente do carrinho que contem os itens que forao adicionados 
+// compoente do carrinho que cexibe todos os itens adicionados ao carrinho
 'use client'
 
 import { useContext, useState } from "react";
 import { CartContext } from "../contexts/CartContext";
 
-export const CartItens = () => {
+type Props = {
+    onNavigate: (currentMain:string) => void;
+}
+
+export const CartItens = ({onNavigate}: Props) => {
 
     // ctx que contem os itens do carrinho
     const ItensCtxCart = useContext(CartContext)
 
-    // state pra armazenar o valor da soma dos itens do carrinho
-    const [tot, setTot] = useState<number>(0)
-
+ 
     // calcula total automaticamente:
     const total = ItensCtxCart?.cartItems.reduce(
         (sum, item) => sum + (item.valorFinal ?? 0)
         , 0
     ) ?? 0;
-
+    
 
     return (
         <section className="bg-white text-black rounded-2xl shadow-xl p-6 w-full max-w-5xl mx-auto">
@@ -30,7 +32,7 @@ export const CartItens = () => {
             {/* CONTAINER DO CONTEÚDO */}
             <div className="flex flex-col md:flex-row gap-8">
 
-                <div className="flex-1 min-w-[350px] rounded-xl p-5 shadow-md border border-gray-200">
+                <div className="flex-1 min-w-[350px] rounded-xl p-5 shadow-md border border-gray-200 ">
 
 
 
@@ -106,6 +108,16 @@ export const CartItens = () => {
                         </ul>
                     )}
                     {/* add botao de limpar carrinho */}
+                    <div>
+                        <button
+                            onClick={() => ItensCtxCart?.dispatch({ type: 'clear' })}
+                            className=" bg-white text-[#285087] border border-[#285087]
+                             py-3 px-4 rounded-xl font-semibold text-lg
+                             hover:bg-[#285087] hover:text-white transition
+                             shadow-md w-full mt-4">
+                            ESVAZIAR CARRINHO
+                        </button>
+                    </div>
                 </div>
 
                 {/* DIV DA ESQUERDA NO PC: RESUMO FINAL */}
@@ -132,6 +144,7 @@ export const CartItens = () => {
                         Continuar comprando
                     </button>
                     <button
+                        onClick={() => onNavigate('finisBuy1')}
                         className="
                         bg-[#285087] text-[#FFFFFF] border border-[#285087]
                         py-3 rounded-xl font-semibold text-lg

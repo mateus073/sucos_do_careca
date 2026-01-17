@@ -1,11 +1,11 @@
 export const Footer = () => {
   return (
-    <div className="p-5 bg-white">
+    <div className="p-9 bg-white">
       <footer className="
-        bg-[#023373]
-        rounded-3xl
+        bg-[#023373]        ]
+        rounded-4xl
         shadow-md
-        p-8
+        p-10
         flex flex-col md:flex-row
         items-center justify-between
         gap-8
@@ -17,18 +17,18 @@ export const Footer = () => {
             src="/imgs/logo.jpg" 
 
             alt="Sucos do Careca" 
-            className="w-28 h-28 mb-6 border-4 rounded-full object-cover" 
+            className="w-24 h-24 mb-6 border-4 rounded-full object-cover" 
           />
 
           <div className="flex gap-4 items-center">
             <a href="https://www.facebook.com/sucosdocareca">
-              <img src="/imgs/facebook.png" alt="Facebook" className="w-6 h-6 opacity-80 hover:opacity-100 transition" />
+              <img src="/imgs/facebook.png" alt="Facebook" className="w-10 h-10 opacity-80 hover:opacity-100 transition" />
             </a>
             <a href="https://www.instagram.com/sucosdocareca">
-              <img src="/imgs/instagram.png" alt="Instagram" className="w-6 h-6 opacity-80 hover:opacity-100 transition" />
+              <img src="/imgs/instagram.png" alt="Instagram" className="w-10 h-10 opacity-80 hover:opacity-100 transition" />
             </a>
             <a href="https://www.twitter.com/sucosdocareca">
-              <img src="/imgs/whatsapp.png" alt="Whatsapp" className="w-6 h-6 opacity-80 hover:opacity-100 transition" />
+              <img src="/imgs/whatsapp.png" alt="Whatsapp" className="w-10 h-10 opacity-80 hover:opacity-100 transition" />
             </a>
           </div>
         </div>
